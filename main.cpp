@@ -32,6 +32,46 @@ int main() {
 	set<int> answerSet2(ans.begin(), ans.end());
 	assert(answerSet2 == soln);
 
+		// Test 3: Single element
+	values = {13};
+	ans = biggest_divisible_conglomerate(values);
+	cout << "input: " << vec_to_string(values) << endl;
+	cout << "output: " << vec_to_string(ans) << endl << endl;
+	assert(ans.size() == 1 && ans[0] == 13);
+
+	// Test 4: All elements divisible
+	values = {1, 2, 4, 8, 16};
+	ans = biggest_divisible_conglomerate(values);
+	cout << "input: " << vec_to_string(values) << endl;
+	cout << "output: " << vec_to_string(ans) << endl << endl;
+	soln = {1, 2, 4, 8, 16};
+	set<int> answerSet3(ans.begin(), ans.end());
+	assert(answerSet3 == soln);
+
+	// Test 5: No two numbers divisible
+	values = {7, 11, 13, 17};
+	ans = biggest_divisible_conglomerate(values);
+	cout << "input: " << vec_to_string(values) << endl;
+	cout << "output: " << vec_to_string(ans) << endl << endl;
+	assert(ans.size() == 1);  // Only one number can be in the subset
+
+	// Test 6: Multiple valid largest subsets
+	values = {3, 5, 15, 30, 60};
+	ans = biggest_divisible_conglomerate(values);
+	cout << "input: " << vec_to_string(values) << endl;
+	cout << "output: " << vec_to_string(ans) << endl << endl;
+	answerSet = set<int>(ans.begin(), ans.end());
+	bool option1 = (answerSet == set<int>({3, 15, 30, 60}));
+	bool option2 = (answerSet == set<int>({5, 15, 30, 60}));
+	assert(option1 || option2);
+
+	// Test 7: Duplicates in input
+	values = {2, 3, 4, 6, 8, 12, 24, 24, 48};
+	ans = biggest_divisible_conglomerate(values);
+	cout << "input: " << vec_to_string(values) << endl;
+	cout << "output: " << vec_to_string(ans) << endl << endl;
+	assert(ans.size() >= 4); // Depending on path, could be [2,4,8,24,48] etc.
+
 
 
 	// The random number test creates a massive 28,000 value input vector.  
